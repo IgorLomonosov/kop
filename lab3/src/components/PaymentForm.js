@@ -2,7 +2,6 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import './PaymentForm.css'; // Підключення стилів
 
 const schema = yup.object().shape({
   edrpou: yup.string().required("EDRPOU is required").min(8, "Must be at least 8 characters"),

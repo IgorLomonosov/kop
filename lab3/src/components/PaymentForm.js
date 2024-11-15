@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -21,6 +21,16 @@ const PaymentForm = () => {
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema),
   });
+
+  const [amount, setAmount] = useState(0);
+  const [totalAmount, setTotalAmount] = useState(0);
+
+  const handleAmountChange = (e) => {
+    const inputAmount = parseFloat(e.target.value) || 0;
+    setAmount(inputAmount);
+    const commission = 0;
+    setTotalAmount(inputAmount + commission);
+  };
 
   const onSubmit = (data) => {
     console.log(data);
@@ -64,25 +74,43 @@ const PaymentForm = () => {
       </div>
       <div className="form-group">
         <label>Amount</label>
-        <input type="number" {...register("amount")} />
+        <input
+          type="number"
+          {...register("amount")}
+          onChange={handleAmountChange}
+          placeholder="Enter amount"
+        />
         <p className="error">{errors.amount?.message}</p>
       </div>
-      <div className="form-group">
-        <label>Card Number</label>
-        <input {...register("cardNumber")} />
-        <p className="error">{errors.cardNumber?.message}</p>
+      <div className="card-info">
+        <div className="form-group card-number">
+          <label>Номер картки</label>
+          <input {...register("cardNumber")} placeholder="0000 0000 0000 0000" />
+          <p className="error">{errors.cardNumber?.message}</p>
+        </div>
+        <div className="form-group expiration-date">
+          <label>Термін дії</label>
+          <input {...register("expirationDate")} placeholder="MM/YY" />
+          <p className="error">{errors.expirationDate?.message}</p>
+        </div>
+        <div className="form-group cvv">
+          <label>CVV</label>
+          <input {...register("cvv")} placeholder="000" />
+          <p className="error">{errors.cvv?.message}</p>
+        </div>
       </div>
+      
       <div className="form-group">
-        <label>Expiration Date</label>
-        <input {...register("expirationDate")} />
-        <p className="error">{errors.expirationDate?.message}</p>
+        <label>Комісія:</label>
+        <p>0.00 грн</p>
       </div>
+      
       <div className="form-group">
-        <label>CVV</label>
-        <input {...register("cvv")} />
-        <p className="error">{errors.cvv?.message}</p>
+        <label>До сплати:</label>
+        <p>{totalAmount.toFixed(2)} грн</p>
       </div>
-      <button type="submit" className="submit-button">Submit</button>
+
+      <button type="submit" className="submit-button">Сплатити</button>
     </form>
   );
 };

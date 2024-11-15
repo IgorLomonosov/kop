@@ -1,6 +1,6 @@
 import React from 'react';
 import PaymentForm from './components/PaymentForm';
-import './App.css'; // підключення стилів
+import './App.css';
 
 function App() {
   return (

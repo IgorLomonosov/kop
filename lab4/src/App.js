@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import TabGroup from "./components/TabGroup";
+import TabContent from "./components/TabContent";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <TabGroup />
+      <Routes>
+        <Route path="/tab1" element={<TabContent content="Content for Tab 1" />} />
+        <Route path="/tab2" element={<TabContent content="Content for Tab 2" />} />
+        <Route path="/tab3" element={<TabContent content="Content for Tab 3" />} />
+        <Route path="*" element={<TabContent content="Select a tab" />} />
+      </Routes>
+    </Router>
   );
 }
 

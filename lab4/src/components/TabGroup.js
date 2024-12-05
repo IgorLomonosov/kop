@@ -7,9 +7,9 @@ const TabGroup = () => {
   const location = useLocation();
 
   const tabs = [
-    { label: "Tab 1", path: "/tab1" },
-    { label: "Tab 2", path: "/tab2" },
-    { label: "Tab 3", path: "/tab3" },
+    { label: "Home", path: "/home" },
+    { label: "About", path: "/info" },
+    { label: "Contact", path: "/contact" },
   ];
 
   const currentTabIndex = tabs.findIndex((tab) => tab.path === location.pathname);
@@ -19,8 +19,26 @@ const TabGroup = () => {
   };
 
   return (
-    <Box sx={{ width: "100%", typography: "body1" }}>
-      <Tabs value={currentTabIndex} onChange={handleChange}>
+    <Box sx={{ backgroundColor: "#f5f5f5", padding: "10px 0", boxShadow: "0 2px 5px rgba(0,0,0,0.1)" }}>
+      <Tabs
+        value={currentTabIndex}
+        onChange={handleChange}
+        centered
+        TabIndicatorProps={{
+          style: { backgroundColor: "#1976d2", height: "3px" },
+        }}
+        sx={{
+          "& .MuiTab-root": {
+            fontSize: "1rem",
+            fontWeight: 500,
+            textTransform: "none",
+            minWidth: "120px",
+          },
+          "& .Mui-selected": {
+            color: "#1976d2",
+          },
+        }}
+      >
         {tabs.map((tab, index) => (
           <Tab key={index} label={tab.label} />
         ))}

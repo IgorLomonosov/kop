@@ -4,14 +4,21 @@ import TabGroup from "./components/TabGroup";
 import TabContent from "./components/TabContent";
 
 function App() {
+  const tabContents = {
+    home: { title: "Welcome to Home", body: "This is the home tab. Enjoy your stay!" },
+    info: { title: "About Us", body: "Learn more about us and what we do." },
+    contact: { title: "Contact", body: "Get in touch with us through this tab." },
+    default: { title: "Welcome!", body: "Please select a tab to see more content." },
+  };
+
   return (
     <Router>
       <TabGroup />
       <Routes>
-        <Route path="/tab1" element={<TabContent content="Content for Tab 1" />} />
-        <Route path="/tab2" element={<TabContent content="Content for Tab 2" />} />
-        <Route path="/tab3" element={<TabContent content="Content for Tab 3" />} />
-        <Route path="*" element={<TabContent content="Select a tab" />} />
+        <Route path="/home" element={<TabContent content={tabContents.home} />} />
+        <Route path="/info" element={<TabContent content={tabContents.info} />} />
+        <Route path="/contact" element={<TabContent content={tabContents.contact} />} />
+        <Route path="*" element={<TabContent content={tabContents.default} />} />
       </Routes>
     </Router>
   );

@@ -2,6 +2,7 @@ import React from 'react';
 import { ContactsProvider } from './context/ContactsContext';
 import ContactList from './components/ContactList';
 import AddContact from './components/AddContact';
+import "./App.css";
 
 const App = () => {
   return (

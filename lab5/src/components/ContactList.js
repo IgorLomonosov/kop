@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
-import { ContactsContext } from '../context/ContactsContext';
+import React from 'react';
+import { useStore } from 'effector-react';
+import { $contacts, deleteContact } from '../models/contacts';
 
 const ContactList = () => {
-  const { contacts, deleteContact } = useContext(ContactsContext);
+  const contacts = useStore($contacts);
 
   return (
     <div>

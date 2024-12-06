@@ -1,10 +1,9 @@
-import React, { useState, useContext } from 'react';
-import { ContactsContext } from '../context/ContactsContext';
+import React, { useState } from 'react';
+import { addContact } from '../models/contacts';
 
 const AddContact = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const { addContact } = useContext(ContactsContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();

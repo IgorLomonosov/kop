@@ -1,9 +1,8 @@
-import React, { memo } from 'react';
-import { useStore } from 'effector-react';
-import { $contacts, deleteContact } from '../models/contacts';
+import React from 'react';
+import { useContacts } from '../context/ContactContext';
 
-const ContactList = memo(() => {
-  const contacts = useStore($contacts);
+const ContactList = React.memo(() => {
+  const { contacts, deleteContact } = useContacts();
 
   return (
     <div>

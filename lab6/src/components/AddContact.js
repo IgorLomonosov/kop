@@ -1,7 +1,8 @@
-import React, { useState, memo } from 'react';
-import { addContact } from '../models/contacts';
+import React, { useState } from 'react';
+import { useContacts } from '../context/ContactContext';
 
-const AddContact = memo(() => {
+const AddContact = React.memo(() => {
+  const { addContact } = useContacts();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
 

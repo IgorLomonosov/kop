@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useStore } from 'effector-react';
 import { $contacts, deleteContact } from '../models/contacts';
 
-const ContactList = () => {
+const ContactList = memo(() => {
   const contacts = useStore($contacts);
 
   return (
@@ -29,6 +29,6 @@ const ContactList = () => {
       </ul>
     </div>
   );
-};
+});
 
 export default ContactList;

@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { addContact } from '../models/contacts';
 
-const AddContact = () => {
+const AddContact = memo(() => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addContact({ name, phone });
-    setName('');
-    setPhone('');
+    if (name && phone) {
+      addContact({ name, phone });
+      setName('');
+      setPhone('');
+    }
   };
 
   return (
@@ -33,6 +35,6 @@ const AddContact = () => {
       <button type="submit">Додати</button>
     </form>
   );
-};
+});
 
 export default AddContact;
